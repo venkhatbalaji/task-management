@@ -1,0 +1,43 @@
+.task-container {
+  margin: 40px;
+  @media (min-width: 768px) {
+    margin: 20px;
+  }
+}
+
+// TaskForm.scss
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 0.5rem;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      margin-right: 0.5rem;
+      width: auto;
+    }
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 2.5rem;
+  }
+}

@@ -24,6 +24,11 @@ module.exports = function (app) {
     [body("password").isLength({ min: 6 }), body("email").isEmail()],
     userController.login
   );
+  app.get(
+    "/users",
+    [middleware.authenticateToken],
+    userController.getUsers
+  );
   app.put(
     "/profile",
     [

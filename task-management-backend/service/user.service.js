@@ -6,8 +6,8 @@ const register = async ({ username, password, email, name }) => {
   console.log("[register]");
   try {
     const isUserRegistered = await database.executeQuery(
-      "SELECT * FROM users WHERE email = ?",
-      [email]
+      "SELECT * FROM users WHERE email = ? OR username = ?",
+      [email, username]
     );
     if (isUserRegistered?.length > 0) {
       return "User already exists";
@@ -75,9 +75,23 @@ const deleteUser = async (userId) => {
   }
 };
 
+const getUser = async () => {
+  console.log("[getUser]");
+  try {
+    const data = await database.executeQuery(
+      "SELECT id, username FROM task_management.users order by created_at DESC limit 10;"
+    );
+    return data;
+  } catch (err) {
+    console.log("Error in getUser: ", err);
+    throw new Error(err);
+  }
+};
+
 module.exports = {
   register: register,
   login: login,
+  getUser: getUser,
   update: update,
   deleteUser: deleteUser,
 };

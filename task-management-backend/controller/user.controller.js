@@ -84,9 +84,27 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+    console.log("[delete User]");
+    try {
+      const data = await userService.getUser();
+      return res.status(201).send({
+        success: true,
+        users: data,
+      });
+    } catch (error) {
+      console.log("error in [delete User]", error);
+      return res.status(500).send({
+        message: "Error in delete",
+        success: false,
+      });
+    }
+  };
+
 module.exports = {
   register: register,
   login: login,
+  getUsers: getUsers,
   update: update,
   deleteUser: deleteUser,
 };
